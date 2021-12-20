@@ -1,3 +1,6 @@
+//todo: change this to point the plot at the right div
+let plot = document.getElementById('plot');
+
 let request = {
     reachid: 3001207,
     lat: 100.0,
@@ -38,4 +41,7 @@ const MakePlot = (response) => {
         mode: 'lines',
         name: 'Bias Corrected Forecast'
     }
+
+    Plotly.react(plot, [original_trace, corrected_trace], layout, {scrollZoom: true})
+
 }
