@@ -45,3 +45,10 @@ const MakePlot = (response) => {
     Plotly.react(plot, [original_trace, corrected_trace], layout, {scrollZoom: true})
 
 }
+
+
+$.ajax({
+    type: "GET",
+    url: "{{ 'regional_bias_correction/data' }}",
+    success: MakePlot(response)
+})

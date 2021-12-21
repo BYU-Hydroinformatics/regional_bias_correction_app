@@ -29,6 +29,11 @@ class RegionalBiasCorrection(TethysAppBase):
                 url='regional-bias-correction',
                 controller='regional_bias_correction.controllers.home'
             ),
+            UrlMap(
+                name='bias-corrected-data',
+                url='regional_bias_correction/data',
+                controller='regional_bias_correction.controllers.request_data'
+            )
         )
 
         return url_maps
