@@ -1,11 +1,11 @@
 import os
 from glob import glob
-import netCDF4
+import netCDF4 as nc
 
 
 def get_data(request: dict):
     archive = ''
-    archive_dataset = netCDF4.Dataset(archive, mode='r')
+    archive_dataset = nc.Dataset(archive, mode='r')
     datetime = archive_dataset.variables['datetime'][:, request.lat, request.lon, request.reach_id]
     original_flow = archive_dataset.variables['original_flow'][:, request.lat, request.lon, request.reach_id]
     bias_corrected_flow = archive_dataset.variables['bias_corrected_flow'][:, request.lat, request.lon, request.reach_id]
