@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from tethys_sdk.permissions import login_required
 from tethys_sdk.gizmos import Button
-from . import request.get_data
-
 
 @login_required()
 def home(request):
@@ -74,7 +72,3 @@ def home(request):
     }
 
     return render(request, 'regional_bias_correction/home.html', context)
-
-def request_data(request):
-    response = get_data(request)
-    return response
