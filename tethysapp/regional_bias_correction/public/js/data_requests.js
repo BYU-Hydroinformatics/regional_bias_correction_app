@@ -1,5 +1,4 @@
-//todo: change this to point the plot at the right div
-let plot = document.getElementById('plot');
+let plot = document.getElementById('flowduration-chart');
 
 let request = {
     reachid: 3001207,
@@ -47,8 +46,8 @@ const MakePlot = (response) => {
 }
 
 
-$.ajax({
-    type: "GET",
-    url: "{{ 'regional_bias_correction/data' }}",
-    success: MakePlot(response)
-})
+// $.ajax({
+//     type: "GET",
+//     url: "{{ 'regional_bias_correction/data' }}",
+//     success: MakePlot(response)
+// })
