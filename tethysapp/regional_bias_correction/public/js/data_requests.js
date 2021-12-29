@@ -46,9 +46,9 @@ const MakePlot = (response) => {
 
 }
 
-
+// Moved to map_core.getBiasCorrectedPlots, which triggers on gauge being clicked
 // $.ajax({
 //     type: "GET",
-//     url: "{{ 'regional_bias_correction/data' }}",
+//     url: URL_getBiasCorrected,
 //     success: MakePlot(response)
 // })

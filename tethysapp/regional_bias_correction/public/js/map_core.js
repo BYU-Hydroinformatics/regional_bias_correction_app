@@ -11,6 +11,27 @@ let mapMarker = null
 let controlsObj
 let SelectedSegment = L.geoJSON(false, { weight: 5, color: "#00008b" }).addTo(mapObj)
 
+// Add gauge network to click on and trigger plot
+let gaugeNetwork = L.geoJSON(false, {
+    onEachFeature: function(feature, layer) {
+        REACHID = feature.properties.GEOGLOWSID
+        layer.on("click", function(event) {
+            L.DomEvent.stopPropagation(event)
+            getBiasCorrectedPlots(feature.properties)
+        })
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, {
+            radius: 6,
+            fillColor: "#ff0000",
+            color: "#000000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 1
+        })
+    }
+})
+
 const basemapsJson = {
     "ESRI Topographic": L.esri.basemapLayer("Topographic").addTo(mapObj),
     "ESRI Terrain": L.layerGroup([
@@ -171,6 +192,30 @@ function getHistoricalData() {
     })
 }
 
+//////////////////////////////////////////////////////////////////////// GET BIAS CORRECTED PLOTS
+function getBiasCorrectedPlots(gauge_metadata){
+    // lines 327 - 357 of geoglows_hydroviewer_core.js
+    let data
+    if (gauge_metadata !== false) {
+        data = gauge_metadata
+        data["gauge_network"] = $("#gauge_networks").val() //todo: need the element that matches this id
+    } else if (!REACHID) {
+        alert(
+            "No Reach-ID has been chosen. You must successfully retrieve streamflow before attempting calibration"
+        )
+        return
+    }
+    updateStatusIcons("load")
+    updateDownloadLinks("clear")
+    $("#chart_modal").modal("show")
+    $.ajax({
+    type: "GET",
+    async: true,
+    data: data,
+    url: URL_getBiasCorrected,
+    success: MakePlot(response)
+})
+}
 
 //////////////////////////////////////////////////////////////////////// UPDATE STATUS ICONS FUNCTION
 // todo needs to be changed later
