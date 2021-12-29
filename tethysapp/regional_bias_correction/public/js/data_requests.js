@@ -3,7 +3,8 @@ let plot = document.getElementById('flowduration-chart');
 let request = {
     reachid: 3001207,
     lat: 100.0,
-    lon: 45.0
+    lon: 45.0,
+    start_date: start_date
 }
 
 let response = {
