@@ -1,5 +1,3 @@
-let plot = document.getElementById('flowduration-chart');
-
 let request = {
     reachid: 3001207,
     lat: 100.0,
@@ -42,7 +40,7 @@ const MakePlot = (response) => {
         name: 'Bias Corrected Forecast'
     }
 
-    Plotly.react(plot, [original_trace, corrected_trace], layout, {scrollZoom: true})
+    Plotly.react("flowduration-chart", [original_trace, corrected_trace], layout, {scrollZoom: true})
 
 }
 

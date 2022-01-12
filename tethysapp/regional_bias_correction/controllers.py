@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from tethys_sdk.permissions import login_required
 from tethys_sdk.gizmos import Button
-from . import request.get_data
+from tethys_sdk.permissions import login_required
+from request_data import get_data
+
 
 @login_required()
 def home(request):
