@@ -1,5 +1,3 @@
-
-
 const mapObj = L.map("map", {
     zoom: 3,
     minZoom: 2,
@@ -108,4 +106,3 @@ const basemapsJson = {
 //            updateStatusIcons("fail")
 //        }
 //    })
-//}})
