@@ -6,7 +6,7 @@ app_package = 'regional_bias_correction'
 release_package = 'tethysapp-' + app_package
 
 # -- Python Dependencies -- #
-dependencies = []
+dependencies = ['netCDF4']
 
 # -- Get Resource File -- #
 resource_files = find_resource_files('tethysapp/' + app_package + '/templates', 'tethysapp/' + app_package)
@@ -20,7 +20,7 @@ setup(
     description='',
     long_description='',
     keywords='',
-    author='',
+    author='Josh Ogden, Jonah Dundas, Riley Hales',
     author_email='',
     url='',
     license='',

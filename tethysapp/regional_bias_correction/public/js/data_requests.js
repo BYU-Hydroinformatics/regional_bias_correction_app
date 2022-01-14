@@ -1,10 +1,8 @@
-//todo: change this to point the plot at the right div
-let plot = document.getElementById('plot');
-
 let request = {
     reachid: 3001207,
     lat: 100.0,
-    lon: 45.0
+    lon: 45.0,
+    start_date: start_date
 }
 
 let response = {
@@ -42,13 +40,13 @@ const MakePlot = (response) => {
         name: 'Bias Corrected Forecast'
     }
 
-    Plotly.react(plot, [original_trace, corrected_trace], layout, {scrollZoom: true})
+    Plotly.react("flowduration-chart", [original_trace, corrected_trace], layout, {scrollZoom: true})
 
 }
 
-
-$.ajax({
-    type: "GET",
-    url: "{{ 'regional_bias_correction/data' }}",
-    success: MakePlot(response)
-})
+// Moved to map_core.getBiasCorrectedPlots, which triggers on gauge being clicked
+// $.ajax({
+//     type: "GET",
+//     url: URL_getBiasCorrected,
+//     success: MakePlot(response)
+// })

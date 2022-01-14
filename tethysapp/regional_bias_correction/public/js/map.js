@@ -106,4 +106,3 @@ const basemapsJson = {
 //            updateStatusIcons("fail")
 //        }
 //    })
-//}
