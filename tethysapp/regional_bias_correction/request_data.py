@@ -21,4 +21,5 @@ def get_data(request):
         'lat': request.lat,
         'lon': request.lon
     }
+    archive_dataset.close()
     return response
