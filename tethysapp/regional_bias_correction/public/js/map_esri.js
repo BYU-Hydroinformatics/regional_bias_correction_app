@@ -108,7 +108,6 @@ L.control
         basemapsJson,
         {
             "Stream Network": globalLayer,
-            "Gauge Network": gaugeNetwork,
             "VIIRS Imagery": VIIRSlayer
         },
         { collapsed: false }
@@ -132,31 +131,17 @@ mapObj.on("click", function(event) {
     L.esri
         .identifyFeatures({url: "https://livefeeds2.arcgis.com/arcgis/rest/services/GEOGLOWS/GlobalWaterModel_Medium/MapServer"})
         .on(mapObj)
-        // query bounding box
-        // .at(L.latLngBounds(
-        //     [event.latlng['lat'] - .05, event.latlng['lng'] - .05],
-        //     [event.latlng['lat'] + .05, event.latlng['lng'] + .05],))
-
-        // querying point with tolerance
         .at([event.latlng["lat"], event.latlng["lng"]])
         .tolerance(10) // map pixels to buffer search point
         .precision(3) // decimals in the returned coordinate pairs
-        // .returnGeometry(false)  // include geojson geometry
         .run(function(error, featureCollection) {
             if (error) {
-                updateStatusIcons("fail")
                 alert("Error finding the reach_id")
                 return
             }
             SelectedSegment.clearLayers()
             SelectedSegment.addData(featureCollection.features[0].geometry)
             REACHID = featureCollection.features[0].properties["COMID (Stream Identifier)"]
-            clearChartDivs()
-            hideGetHistorical()
-            hideHistoricalTabs()
-            hideBiasCalibrationTabs()
-            updateStatusIcons("load")
-            updateDownloadLinks("clear")
-            setupDatePicker()
+            console.log(REACHID)
         })
 })
