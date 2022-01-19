@@ -6,7 +6,7 @@ app_package = 'regional_bias_correction'
 release_package = 'tethysapp-' + app_package
 
 # -- Python Dependencies -- #
-dependencies = ['netCDF4']
+dependencies = []
 
 # -- Get Resource File -- #
 resource_files = find_resource_files('tethysapp/' + app_package + '/templates', 'tethysapp/' + app_package)
