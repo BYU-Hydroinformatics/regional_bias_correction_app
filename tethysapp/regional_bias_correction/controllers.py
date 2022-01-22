@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse, HttpResponseNotAllowed
 from tethys_sdk.permissions import login_required
 from tethys_sdk.gizmos import Button
 from . import request_data
@@ -75,5 +76,16 @@ def home(request):
     return render(request, 'regional_bias_correction/home.html', context)
 
 def request_data(request):
-    response = request_data.get_data(request)
-    return response
+    json_response = {'success': False}
+
+    if request.method != 'GET':
+        return HttpResponseNotAllowed(['GET'])
+    try:
+        response = request_data.get_data(request)
+        json_response.update(response)
+        json_response.update({'success': True})
+    except Exception as e:
+        json_response['error'] = f'The following error has occurred:\n' \
+                                 f'{e}\n' \
+                                 f'Please try again.'
+    return JsonResponse(json_response)

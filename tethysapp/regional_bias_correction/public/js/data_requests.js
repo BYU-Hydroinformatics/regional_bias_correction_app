@@ -44,9 +44,10 @@ const MakePlot = (response) => {
 
 }
 
-// Moved to map_core.getBiasCorrectedPlots, which triggers on gauge being clicked
+// Move to map_core.getBiasCorrectedPlots, which triggers on gauge being clicked?
 // $.ajax({
 //     type: "GET",
-//     url: URL_getBiasCorrected,
+//     data: request,
+//     url: './getBiasCorrected',
 //     success: MakePlot(response)
 // })
