@@ -1,9 +1,10 @@
-let request = {
-    reachid: 3001207,
-    lat: 100.0,
-    lon: 45.0,
-    start_date: start_date
-}
+const divIDForForecastCharts = 'forecast-chart'
+// let request = {
+//     reachid: 3001207,
+//     lat: 100.0,
+//     lon: 45.0,
+//     start_date: start_date
+// }
 
 let response = {
     datetime: ['2021-06-01 00:00:00','2021-06-01 00:03:00'],
@@ -26,7 +27,7 @@ let layout = {
   }
 };
 
-const MakePlot = (response) => {
+const makePlot = (response) => {
     let original_trace = {
         x: response.datetime,
         y: response.original_flow,
@@ -40,14 +41,14 @@ const MakePlot = (response) => {
         name: 'Bias Corrected Forecast'
     }
 
-    Plotly.react("flowduration-chart", [original_trace, corrected_trace], layout, {scrollZoom: true})
+    Plotly.react(divIDForForecastCharts, [original_trace, corrected_trace], layout, {scrollZoom: true})
 
 }
 
 // Move to map_core.getBiasCorrectedPlots, which triggers on gauge being clicked?
-// $.ajax({
-//     type: "GET",
-//     data: request,
-//     url: './getBiasCorrected',
-//     success: MakePlot(response)
-// })
+$.ajax({
+    type: "GET",
+    data: request,
+    url: URL_getBiasCorrected,
+    success: makePlot(response)
+})
