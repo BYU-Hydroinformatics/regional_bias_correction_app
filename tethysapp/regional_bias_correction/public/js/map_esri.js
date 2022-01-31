@@ -138,6 +138,7 @@ mapObj.on("click", event => {
                 alert("Error finding the reach_id")
                 return
             }
+            console.log(featureCollection)
             SelectedSegment.clearLayers()
             SelectedSegment.addData(featureCollection.features[0].geometry)
             REACHID = featureCollection.features[0].properties["COMID (Stream Identifier)"]

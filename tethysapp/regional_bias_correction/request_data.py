@@ -7,7 +7,7 @@ def get_data(request):
     archive = ''
     lat = float(request.lat)
     lon = float(request.lon)
-    reach_id = float(request.reach_id)
+    reach_id = float(request.reachid)
     archive_dataset = nc.Dataset(archive, mode='r')
     datetime = archive_dataset['datetime'][:, lat, lon, reach_id]
     original_flow = archive_dataset['original_flow'][:, lat, lon, reach_id]

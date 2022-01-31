@@ -40,15 +40,18 @@ const makePlot = (response) => {
         mode: 'lines',
         name: 'Bias Corrected Forecast'
     }
+    let layout = {
+      title: `Original vs. Bias Corrected Flow for ReachID: ${response['reachid']}`,
+      xaxis: {
+        title: 'DateTime',
+        showgrid: true
+      },
+      yaxis: {
+        title: 'Flow Rate m^3/s',
+        showgrid: true
+      }
+    };
 
     Plotly.react(divIDForForecastCharts, [original_trace, corrected_trace], layout, {scrollZoom: true})
 
 }
-
-// Move to map_core.getBiasCorrectedPlots, which triggers on gauge being clicked?
-$.ajax({
-    type: "GET",
-    data: request,
-    url: URL_getBiasCorrected,
-    success: makePlot(response)
-})
