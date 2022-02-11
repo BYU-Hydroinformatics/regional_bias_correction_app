@@ -125,6 +125,10 @@ mapObj.on("click", event => {
         mapObj.removeLayer(mapMarker)
     }
     mapMarker = L.marker(event.latlng).addTo(mapObj)
+    document.getElementById("loading-icon-div").classList.add("in")
+    document.getElementById("loading-icon-div").classList.remove("out")
+    document.getElementById(divIDForForecastCharts).classList.add("out")
+    document.getElementById(divIDForForecastCharts).classList.remove("in")
     $("#chart_modal").modal("show")
 
     L.esri
@@ -149,10 +153,10 @@ mapObj.on("click", event => {
                 lon: event.latlng["lng"]
             }
             console.log(request)
+
             $.ajax({
                 type: "GET",
-                data: request,
-                url: URL_getBiasCorrected,
+                url: `${URL_getBiasCorrected}?reachid=${request.reachid}&lat=${request.lat}&lon=${request.lon}`,
                 success: response => makePlot(response)
             })
 

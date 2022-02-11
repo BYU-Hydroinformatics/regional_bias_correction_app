@@ -69,3 +69,40 @@
 #app-content-wrapper #app-content {
     height: 100%;
 }
+
+#chart_modal {
+    width: 100%;
+}
+#chart_modal_dialog {
+    width: 90%;
+}
+
+.loading-icon {
+    height: 0px;
+    margin-left: 25%;
+    margin-right: auto;
+    width: 50%;
+}
+
+#loading-icon-img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.loading-icon.in {
+    display: inline;
+}
+
+#forecast-chart.in {
+    display: inline;
+}
+
+#forecast-chart.out {
+    display: none;
+}
+
+.loading-icon.out {
+    display: none;
+}
+

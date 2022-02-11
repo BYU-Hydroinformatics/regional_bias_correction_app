@@ -29,6 +29,7 @@ let layout = {
 
 function makePlot(response) {
     // todo: loading icon, remove text input, format plot better, make modal wider
+
     let original_trace = {
         x: response.datetime,
         y: response.original_flow,
@@ -51,14 +52,22 @@ function makePlot(response) {
       title: `Original vs. Bias Corrected Flow for ReachID: ${parseInt(response['reachid'])}`,
       xaxis: {
         title: 'DateTime',
-        showgrid: true
+        showgrid: true,
+        nticks: 20,
+        tickformat: "%y/%M/%d"
       },
       yaxis: {
         title: 'Flow Rate m^3/s',
         showgrid: true
-      }
+
+      },
+      width: document.getElementById("chart_modal_dialog").getBoundingClientRect()['width'] * 0.95
     };
 
     Plotly.react(divIDForForecastCharts, [original_trace, corrected_trace], layout, {scrollZoom: true})
+    document.getElementById("loading-icon-div").classList.add("out")
+    document.getElementById("loading-icon-div").classList.remove("in")
+    document.getElementById(divIDForForecastCharts).classList.add("in")
+    document.getElementById(divIDForForecastCharts).classList.remove("out")
 
 }

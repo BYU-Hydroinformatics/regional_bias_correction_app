@@ -1,12 +1,9 @@
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponseNotAllowed
+from django.http import JsonResponse
 from tethys_sdk.permissions import login_required
 from tethys_sdk.gizmos import Button
-# from .request_data import get_data
-import numpy as np
-import pandas as pd
-import netCDF4 as nc
-import datetime as dt
+from .request_data import get_data
+
 
 @login_required()
 def home(request):
@@ -82,37 +79,9 @@ def home(request):
 
 @login_required()
 def request_data(request):
+    print(request)
     json_response = {'success': False}
-    request = request.GET
-
-    archive = '/Users/jonahdundas/Downloads/calibrated_simulated_flow.nc'
-    lat = float(request.__getitem__('lat'))
-    lon = float(request.__getitem__('lon'))
-    reach_id = float(request.__getitem__('reachid'))
-    archive_dataset = nc.Dataset(archive, mode='r')
-    reachid_index = abs(archive_dataset['model_id'][:] - reach_id).argmin()
-    origin_date = dt.datetime(year=1970, month=1, day=1)
-    time_numbers = archive_dataset['time'][:]
-    dates = pd.to_datetime([origin_date + dt.timedelta(days=int(i)) for i in time_numbers])
-    datetime = dates.strftime("%Y/%m/%d, %H:%M:%S").tolist()
-    original_flow = archive_dataset['flow_sim'][:, reachid_index].tolist()
-    print(original_flow)
-    bias_corrected_flow = archive_dataset['flow_bc'][:, reachid_index].tolist()
-    print(bias_corrected_flow)
-    lat = str(lat)
-    lon = str(lon)
-    reach_id = str(reach_id)
-    response = {
-        'datetime': datetime,
-        'original_flow': original_flow,
-        'bias_corrected_flow': bias_corrected_flow,
-        'reachid': reach_id,
-        'lat': lat,
-        'lon': lon
-    }
-
-    archive_dataset.close()
-    # response = request_data.get_data(request)
+    response = get_data(request)
     json_response.update(response)
     json_response.update({'success': True})
 

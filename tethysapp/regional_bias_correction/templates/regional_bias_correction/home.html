@@ -33,7 +33,7 @@
 {% block after_app_content %}
   {# Chart Modals #}
   <div class="modal fade" id="chart_modal" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" id="chart_modal_dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -44,27 +44,12 @@
         </div>
 
         <div class="modal-body">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a id="forecast_tab_link" href="#forecast" role="tab"
-                                                      data-toggle="tab">Forecasts</a></li>
-            <li role="presentation"><a id="historical_tab_link" href="#historical" role="tab" data-toggle="tab"
-                                       style="display: none">Historical</a></li>
-            <li role="presentation"><a id="avg_flow_tab_link" href="#average_flows" role="tab" data-toggle="tab"
-                                       style="display: none">Average Flows</a></li>
-            <li role="presentation"><a id="flow_duration_tab_link" href="#flow_duration" role="tab" data-toggle="tab"
-                                       style="display: none">Flow-Duration</a></li>
-            <li role="presentation"><a id="bias_correction_tab_link" href="#bias_correction" role="tab"
-                                       style="display: none" data-toggle="tab">Bias Correction</a></li>
-          </ul>
-
           <!-- Tab panes -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="forecast">
               <div class="panel panel-default">
-                <div id="forecast-date-selector">
-                  <label for="forecast_date">Forecast Date: </label>
-                  <input class="form-control" id="forecast_date" name="forecast_date" type="text">
+                <div class="loading-icon" id="loading-icon-div">
+                  <img src="https://www.ashland.edu/sites/all/themes/ashlandecard/2014card/images/load.gif" id="loading-icon-img">
                 </div>
                 <div id="forecast-chart"></div>
                 <div id="forecast-table"></div>
@@ -98,12 +83,12 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-success" role="button" id="download-forecast-btn" target="_blank">Download Forecast</a>
-          <a class="btn btn-success" role="button" id="download-historical-btn" target="_blank" style="display: none">Download
-            Historical Data</a>
-          <button type="button" class="btn btn-info" id="resize_charts" onclick="fix_chart_sizes('forecasts')">Resize
-            the Chart
-          </button>
+<!--          <a class="btn btn-success" role="button" id="download-forecast-btn" target="_blank">Download Forecast</a>-->
+<!--          <a class="btn btn-success" role="button" id="download-historical-btn" target="_blank" style="display: none">Download-->
+<!--            Historical Data</a>-->
+<!--          <button type="button" class="btn btn-info" id="resize_charts" onclick="fix_chart_sizes('forecasts')">Resize-->
+<!--            the Chart-->
+<!--          </button>-->
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
