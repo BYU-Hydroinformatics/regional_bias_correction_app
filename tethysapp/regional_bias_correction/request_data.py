@@ -15,7 +15,7 @@ def get_data(request):
     origin_date = dt.datetime(year=1970, month=1, day=1)
     time_numbers = archive_dataset['time'][:]
     dates = pd.to_datetime([origin_date + dt.timedelta(days=int(i)) for i in time_numbers])
-    datetime = dates.strftime("%Y/%m/%d, %H:%M:%S").tolist()
+    datetime = dates.strftime("%Y-%m-%d %H:%M:%S").tolist()
     original_flow = archive_dataset['flow_sim'][:, reachid_index].tolist()
     bias_corrected_flow = archive_dataset['flow_bc'][:, reachid_index].tolist()
     lat = str(lat)

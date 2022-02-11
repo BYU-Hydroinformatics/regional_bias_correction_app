@@ -51,10 +51,14 @@ function makePlot(response) {
     let layout = {
       title: `Original vs. Bias Corrected Flow for ReachID: ${parseInt(response['reachid'])}`,
       xaxis: {
-        title: 'DateTime',
+        title: {
+            text: 'DateTime',
+            standoff: 5
+        },
         showgrid: true,
-        nticks: 20,
-        tickformat: "%y/%M/%d"
+        nticks: 25,
+        tickformat: "%Y/%m/%d",
+        tickangle: 25
       },
       yaxis: {
         title: 'Flow Rate m^3/s',
