@@ -27,21 +27,28 @@ let layout = {
   }
 };
 
-const makePlot = (response) => {
+function makePlot(response) {
+    // todo: loading icon, remove text input, format plot better, make modal wider
     let original_trace = {
         x: response.datetime,
         y: response.original_flow,
         mode: 'lines',
         name: 'Original Forecast'
     }
+
+    console.log(original_trace)
+
     let corrected_trace = {
         x: response.datetime,
         y: response.bias_corrected_flow,
         mode: 'lines',
         name: 'Bias Corrected Forecast'
     }
+
+    console.log(corrected_trace)
+
     let layout = {
-      title: `Original vs. Bias Corrected Flow for ReachID: ${response['reachid']}`,
+      title: `Original vs. Bias Corrected Flow for ReachID: ${parseInt(response['reachid'])}`,
       xaxis: {
         title: 'DateTime',
         showgrid: true

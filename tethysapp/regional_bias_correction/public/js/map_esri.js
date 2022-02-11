@@ -148,6 +148,7 @@ mapObj.on("click", event => {
                 lat: event.latlng["lat"],
                 lon: event.latlng["lng"]
             }
+            console.log(request)
             $.ajax({
                 type: "GET",
                 data: request,
